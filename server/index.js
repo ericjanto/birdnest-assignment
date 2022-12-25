@@ -37,10 +37,10 @@ function fetchSnapshot() {
                 updateDroneDict(parsedResult)
             })
                 .catch(function (parseErr) {
-                    throw Error(`XML parsing error: ${parseErr}`)
+                    console.log(`XML parsing error: ${parseErr}`)
                 })
         } else if (requestErr) {
-            throw Error(`Internal server error: ${requestErr}`)
+            console.log(`Internal server error: ${requestErr}`)
         }
     })
 }
@@ -50,7 +50,7 @@ function addPilotInfo(serialNumber) {
         .then(response => response.json())
         .then(data => { droneDict[serialNumber]['pilot_info'] = data })
         .catch(error => {
-            throw Error(`Internal server error when fetching from pilot API: ${error}`)
+            console.log(`Internal server error when fetching from pilot API: ${error}`)
         })
 }
 
@@ -135,21 +135,7 @@ app.get('/', async (req, res) => {
     } = req
 
     if (method == 'GET') {
-        res.status(200).send('Server alive. Endpoints: /violating-pilots and /pilot-info')
-    }
-    else {
-        res.setHeader('Allow', ['GET'])
-        res.status(405).end(`Method ${method} not allowed`)
-    }
-})
-
-app.get('/timedict', async (req, res) => {
-    const {
-        method
-    } = req
-
-    if (method == 'GET') {
-        res.status(200).send(droneTimesDict)
+        res.status(200).send('Server alive. Endpoints: /violating-pilots')
     }
     else {
         res.setHeader('Allow', ['GET'])

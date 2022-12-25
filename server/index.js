@@ -45,6 +45,15 @@ function fetchSnapshot() {
     })
 }
 
+function addPilotInfo(serialNumber) {
+    fetch(`${API_PILOTS}/${serialNumber}`)
+        .then(response => response.json())
+        .then(data => { droneDict[serialNumber]['pilot_info'] = data })
+        .catch(error => {
+            throw Error(`Internal server error when fetching from pilot API: ${error}`)
+        })
+}
+
 function updateDroneDict(snapshotJSON) {
     const drones = snapshotJSON.report.capture[0].drone
     const timestamp = snapshotJSON.report.capture[0]["$"].snapshotTimestamp
@@ -59,17 +68,20 @@ function updateDroneDict(snapshotJSON) {
 
             if (sn in droneDict) {
                 droneDict[sn].last_violated = timestamp
-            }
 
-            // Only update position in droneDict if new entry or new min_distance
-            if (!(sn in droneDict) ||
-                dist < droneDict[sn].min_dist_to_nest) {
+                if (dist < droneDict[sn].min_dist_to_nest) {
+                    droneDict[sn].min_dist_to_nest = dist
+                    droneDict[sn].min_position_x = droneX
+                    droneDict[sn].min_position_y = droneY
+                }
+            } else {
                 droneDict[sn] = {
                     "last_violated": timestamp,
                     "min_position_x": droneX,
                     "min_position_y": droneY,
                     "min_dist_to_nest": dist,
                 }
+                addPilotInfo(sn)
             }
         }
     })

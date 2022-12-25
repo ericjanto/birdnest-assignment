@@ -34,7 +34,7 @@ function fetchSnapshot() {
     request(API_DRONES, (requestErr, response, body) => {
         if (!requestErr && response.statusCode === 200) {
             parser.parseStringPromise(body).then(function (parsedResult) {
-                updateDroneDict(parsedResult)
+                cacheData(parsedResult)
             })
                 .catch(function (parseErr) {
                     console.log(`XML parsing error: ${parseErr}`)
@@ -54,7 +54,7 @@ function addPilotInfo(serialNumber) {
         })
 }
 
-function updateDroneDict(snapshotJSON) {
+function cacheData(snapshotJSON) {
     const drones = snapshotJSON.report.capture[0].drone
     const timestamp = snapshotJSON.report.capture[0]["$"].snapshotTimestamp
 
@@ -63,9 +63,10 @@ function updateDroneDict(snapshotJSON) {
         const droneY = normaliseToMeter(drone.positionY[0])
         if (violatesNDZ([droneX, droneY])) {
             const sn = drone.serialNumber[0]
-            updateTimesDict(timestamp, sn)
-            const dist = calculateDistanceToNest([droneX, droneY])
 
+            updateTimesDict(timestamp, sn)
+
+            const dist = calculateDistanceToNest([droneX, droneY])
             if (sn in droneDict) {
                 droneDict[sn].last_violated = timestamp
 

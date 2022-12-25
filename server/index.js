@@ -1,10 +1,10 @@
+const { calculateDistanceToNest, normaliseToMeter, violatesNDZ } = require('./distance.js')
 const express = require('express')
-const request = require('request');
-var parseString = require('xml2js').parseString;
+const request = require('request')
 const xml2js = require('xml2js')
-const schedule = require('node-schedule');
+const schedule = require('node-schedule')
 
-var parser = new xml2js.Parser();
+var parser = new xml2js.Parser()
 
 // ===================================================================
 // DATA FETCHING & CACHING
@@ -13,29 +13,103 @@ var parser = new xml2js.Parser();
 // Reaktor API.
 // ===================================================================
 
+// Schedules to retrieve and update snapshot every second (cron notation)
+schedule.scheduleJob('*/1 * * * * *', function () {
+    fetchSnapshot()
+})
+
 const API_ENDPOINT = 'https://assignments.reaktor.com/birdnest/'
 const API_DRONES = API_ENDPOINT + 'drones'
 const API_PILOTS = API_ENDPOINT + 'pilots'
+const STALE_LIMIT_SEC = 10 * 60 // 10min in s
 
-var mostRecentSnapshot = 'not updated'
+// Keeps track of serialnumber : min_pos, timestamp of violation
+var droneDict = {}
 
-function updateSnapshot() {
-    request(API_DRONES, (error, response, body) => {
-        if (!error && response.statusCode === 200) {
+// Keeps track of timestamp of violation : serialnumber
+// (makes stale data removal more efficient)
+var droneTimesDict = {}
+
+function fetchSnapshot() {
+    request(API_DRONES, (requestErr, response, body) => {
+        if (!requestErr && response.statusCode === 200) {
             parser.parseStringPromise(body).then(function (parsedResult) {
-                mostRecentSnapshot = parsedResult
+                updateDroneDict(parsedResult)
             })
-                .catch(function (err) {
-                    throw Error(`Internal server error: ${err}`)
-                });
+                .catch(function (parseErr) {
+                    throw Error(`XML parsing error: ${parseErr}`)
+                })
+        } else if (requestErr) {
+            throw Error(`Internal server error: ${requestErr}`)
         }
-    });
+    })
 }
 
-// Schedules to retrieve and update snapshot every 2min. Cron notation.
-schedule.scheduleJob('*/1 * * * * *', function () {
-    updateSnapshot()
-});
+function updateDroneDict(snapshotJSON) {
+    const drones = snapshotJSON.report.capture[0].drone
+    const timestamp = snapshotJSON.report.capture[0]["$"].snapshotTimestamp
+
+    drones.forEach(drone => {
+        const droneX = normaliseToMeter(drone.positionX[0])
+        const droneY = normaliseToMeter(drone.positionY[0])
+        if (violatesNDZ([droneX, droneY])) {
+            const sn = drone.serialNumber[0]
+            updateTimesDict(timestamp, sn)
+            const dist = calculateDistanceToNest([droneX, droneY])
+
+            if (sn in droneDict) {
+                droneDict[sn].last_violated = timestamp
+            }
+
+            // Only update position in droneDict if new entry or new min_distance
+            if (!(sn in droneDict) ||
+                dist < droneDict[sn].min_dist_to_nest) {
+                droneDict[sn] = {
+                    "last_violated": timestamp,
+                    "min_position_x": droneX,
+                    "min_position_y": droneY,
+                    "min_dist_to_nest": dist,
+                }
+            }
+        }
+    })
+
+    removeStaleData()
+}
+
+function updateTimesDict(timestamp, serialNumber) {
+    if (timestamp in droneTimesDict &&
+        droneTimesDict[timestamp].indexOf(serialNumber) == -1) {
+        droneTimesDict[timestamp].push(serialNumber)
+    } else {
+        droneTimesDict[timestamp] = [serialNumber]
+    }
+}
+
+function removeStaleData() {
+    // Only last timestamp can ever be > 10min since we add / remove
+    // every 1s
+    const timestamps = Object.keys(droneTimesDict)
+    const stalest = timestamps[0]
+
+    // Date objects in JS are always UTC, same as Birdnest API
+    const now = new Date()
+    const timediffSeconds = (now - new Date(stalest)) / 1000
+
+    if (timediffSeconds > STALE_LIMIT_SEC) {
+        const potentialStaleDrones = droneTimesDict[stalest]
+
+        if (potentialStaleDrones) {
+            potentialStaleDrones.forEach(serialNumber => {
+                if (droneDict[serialNumber].last_violated == stalest) {
+                    delete droneDict[serialNumber]
+                }
+            })
+        }
+
+        delete droneTimesDict[stalest]
+    }
+}
 
 // ===================================================================
 // Server API
@@ -49,7 +123,7 @@ app.get('/', async (req, res) => {
     } = req
 
     if (method == 'GET') {
-        res.status(200).send(mostRecentSnapshot)
+        res.status(200).send('Server alive. Endpoints: /violating-pilots and /pilot-info')
     }
     else {
         res.setHeader('Allow', ['GET'])
@@ -57,8 +131,36 @@ app.get('/', async (req, res) => {
     }
 })
 
-app.listen(app.listen(process.env.PORT || devPort))
+app.get('/timedict', async (req, res) => {
+    const {
+        method
+    } = req
 
-// ===================================================================
-// Helper Functions
-// ===================================================================
+    if (method == 'GET') {
+        res.status(200).send(droneTimesDict)
+    }
+    else {
+        res.setHeader('Allow', ['GET'])
+        res.status(405).end(`Method ${method} not allowed`)
+    }
+})
+
+app.get('/violating-pilots', async (req, res) => {
+    const {
+        method
+    } = req
+
+    if (method == 'GET') {
+        res.status(200).send(droneDict)
+    }
+    else {
+        res.setHeader('Allow', ['GET'])
+        res.status(405).end(`Method ${method} not allowed`)
+    }
+})
+
+app.listen((process.env.PORT || devPort), () => {
+    if (process.env.PORT == undefined) {
+        console.log(`Server listening on port ${devPort}`)
+    }
+})

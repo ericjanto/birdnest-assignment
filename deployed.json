@@ -1,0 +1,146 @@
+{
+    "SN-HB7dbcxcNT": {
+        "last_violated": "2022-12-25T16:38:20.058Z",
+        "min_position_x": 206.01790998274595,
+        "min_position_y": 293.30313554626014,
+        "min_dist_to_nest": 61.72184208546936
+    },
+    "SN-EDbAUwBNg4": {
+        "last_violated": "2022-12-25T16:38:50.082Z",
+        "min_position_x": 308.7411746813789,
+        "min_position_y": 214.12729124654246,
+        "min_dist_to_nest": 68.82860478215912,
+        "pilot_info": {
+            "pilotId": "P-EjQMfW9hAl",
+            "firstName": "Bettie",
+            "lastName": "Pagac",
+            "phoneNumber": "+210507741773",
+            "createdDt": "2022-10-02T10:35:44.119Z",
+            "email": "bettie.pagac@example.com"
+        }
+    },
+    "SN-IzhSwbdwPc": {
+        "last_violated": "2022-12-25T16:39:16.102Z",
+        "min_position_x": 263.1359588010627,
+        "min_position_y": 238.4236123443257,
+        "min_dist_to_nest": 17.509030949132082,
+        "pilot_info": {
+            "pilotId": "P-GQiE7mA5i5",
+            "firstName": "Raegan",
+            "lastName": "Borer",
+            "phoneNumber": "+210345300055",
+            "createdDt": "2022-08-15T18:20:40.982Z",
+            "email": "raegan.borer@example.com"
+        }
+    },
+    "SN-zw4rNHyGFo": {
+        "last_violated": "2022-12-25T16:39:34.118Z",
+        "min_position_x": 189.8370840946755,
+        "min_position_y": 199.41978905076095,
+        "min_dist_to_nest": 78.599835813446,
+        "pilot_info": {
+            "pilotId": "P-XxIEOm7hiZ",
+            "firstName": "Marlon",
+            "lastName": "Grant",
+            "phoneNumber": "+210596924164",
+            "createdDt": "2022-12-18T07:04:26.182Z",
+            "email": "marlon.grant@example.com"
+        }
+    },
+    "SN-GKSzPsmPbo": {
+        "last_violated": "2022-12-25T16:39:48.128Z",
+        "min_position_x": 335.2009122479492,
+        "min_position_y": 225.01892911108342,
+        "min_dist_to_nest": 88.78766440581605,
+        "pilot_info": {
+            "pilotId": "P-ujI_UWOxO7",
+            "firstName": "Destany",
+            "lastName": "Boyle",
+            "phoneNumber": "+210785600744",
+            "createdDt": "2022-01-24T00:25:36.314Z",
+            "email": "destany.boyle@example.com"
+        }
+    },
+    "SN-U17fUTI2xa": {
+        "last_violated": "2022-12-25T16:40:12.146Z",
+        "min_position_x": 257.61063875972576,
+        "min_position_y": 237.2336703706854,
+        "min_dist_to_nest": 14.86273846016797,
+        "pilot_info": {
+            "pilotId": "P-BmFxrAdswD",
+            "firstName": "Cecile",
+            "lastName": "Schumm",
+            "phoneNumber": "+210263720890",
+            "createdDt": "2022-09-19T16:46:59.546Z",
+            "email": "cecile.schumm@example.com"
+        }
+    },
+    "SN-wzg6W4DOfs": {
+        "last_violated": "2022-12-25T16:40:12.146Z",
+        "min_position_x": 187.65123579510822,
+        "min_position_y": 305.3279200300031,
+        "min_dist_to_nest": 83.35794582835888,
+        "pilot_info": {
+            "pilotId": "P-R6LnyI5TTG",
+            "firstName": "Reese",
+            "lastName": "Denesik",
+            "phoneNumber": "+210600282542",
+            "createdDt": "2022-06-03T18:23:16.286Z",
+            "email": "reese.denesik@example.com"
+        }
+    },
+    "SN-c-jRhqZoDH": {
+        "last_violated": "2022-12-25T16:41:22.203Z",
+        "min_position_x": 268.5596156924954,
+        "min_position_y": 207.50377405645165,
+        "min_dist_to_nest": 46.37228217478879,
+        "pilot_info": {
+            "pilotId": "P-_K8i5U22lx",
+            "firstName": "Jacquelyn",
+            "lastName": "Ondricka",
+            "phoneNumber": "+210779927705",
+            "createdDt": "2022-01-16T22:54:21.335Z",
+            "email": "jacquelyn.ondricka@example.com"
+        }
+    },
+    "SN-YSyKE0aczy": {
+        "last_violated": "2022-12-25T16:42:06.233Z",
+        "min_position_x": 221.21715941624626,
+        "min_position_y": 313.5828382315283,
+        "min_dist_to_nest": 69.79419194780091,
+        "pilot_info": {
+            "pilotId": "P-74Tf47jAD5",
+            "firstName": "Nels",
+            "lastName": "Botsford",
+            "phoneNumber": "+210936115594",
+            "createdDt": "2022-11-23T00:34:59.418Z",
+            "email": "nels.botsford@example.com"
+        }
+    },
+    "SN-XprWVJIQCy": {
+        "last_violated": "2022-12-25T16:42:06.233Z",
+        "min_position_x": 276.1992503357626,
+        "min_position_y": 332.3201779230352,
+        "min_dist_to_nest": 86.38872849762363,
+        "pilot_info": {
+            "pilotId": "P-eBnRLuzuSR",
+            "firstName": "Macy",
+            "lastName": "Gibson",
+            "phoneNumber": "+210528320074",
+            "createdDt": "2022-10-15T22:01:22.756Z",
+            "email": "macy.gibson@example.com"
+        }
+    },
+    "SN-cTvcvw0EgK": {
+        "last_violated": "2022-12-25T16:43:00.293Z",
+        "min_position_x": 218.68089061694033,
+        "min_position_y": 187.74250305697527,
+        "min_dist_to_nest": 69.69133761206474
+    },
+    "SN-EpEX8MXX0N": {
+        "last_violated": "2022-12-25T16:43:18.309Z",
+        "min_position_x": 263.0605950808748,
+        "min_position_y": 152.53300907541706,
+        "min_dist_to_nest": 98.33815873687745
+    }
+}

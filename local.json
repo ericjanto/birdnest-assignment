@@ -1,0 +1,282 @@
+{
+    "SN-HB7dbcxcNT": {
+        "last_violated": "2022-12-25T16:38:22.060Z",
+        "min_position_x": 206.01790998274595,
+        "min_position_y": 293.30313554626014,
+        "min_dist_to_nest": 61.72184208546936,
+        "pilot_info": {
+            "pilotId": "P-EIxdB7tV-v",
+            "firstName": "Maureen",
+            "lastName": "Stark",
+            "phoneNumber": "+210775457943",
+            "createdDt": "2022-10-24T11:40:57.441Z",
+            "email": "maureen.stark@example.com"
+        }
+    },
+    "SN-EDbAUwBNg4": {
+        "last_violated": "2022-12-25T16:38:52.084Z",
+        "min_position_x": 308.7411746813789,
+        "min_position_y": 214.12729124654246,
+        "min_dist_to_nest": 68.82860478215912,
+        "pilot_info": {
+            "pilotId": "P-EjQMfW9hAl",
+            "firstName": "Bettie",
+            "lastName": "Pagac",
+            "phoneNumber": "+210507741773",
+            "createdDt": "2022-10-02T10:35:44.119Z",
+            "email": "bettie.pagac@example.com"
+        }
+    },
+    "SN-IzhSwbdwPc": {
+        "last_violated": "2022-12-25T16:39:20.105Z",
+        "min_position_x": 263.1359588010627,
+        "min_position_y": 238.4236123443257,
+        "min_dist_to_nest": 17.509030949132082,
+        "pilot_info": {
+            "pilotId": "P-GQiE7mA5i5",
+            "firstName": "Raegan",
+            "lastName": "Borer",
+            "phoneNumber": "+210345300055",
+            "createdDt": "2022-08-15T18:20:40.982Z",
+            "email": "raegan.borer@example.com"
+        }
+    },
+    "SN-zw4rNHyGFo": {
+        "last_violated": "2022-12-25T16:39:36.119Z",
+        "min_position_x": 189.8370840946755,
+        "min_position_y": 199.41978905076095,
+        "min_dist_to_nest": 78.599835813446,
+        "pilot_info": {
+            "pilotId": "P-XxIEOm7hiZ",
+            "firstName": "Marlon",
+            "lastName": "Grant",
+            "phoneNumber": "+210596924164",
+            "createdDt": "2022-12-18T07:04:26.182Z",
+            "email": "marlon.grant@example.com"
+        }
+    },
+    "SN-GKSzPsmPbo": {
+        "last_violated": "2022-12-25T16:39:48.128Z",
+        "min_position_x": 289.80096697409647,
+        "min_position_y": 256.6728374662142,
+        "min_dist_to_nest": 40.356458366953234,
+        "pilot_info": {
+            "pilotId": "P-ujI_UWOxO7",
+            "firstName": "Destany",
+            "lastName": "Boyle",
+            "phoneNumber": "+210785600744",
+            "createdDt": "2022-01-24T00:25:36.314Z",
+            "email": "destany.boyle@example.com"
+        }
+    },
+    "SN-uOwIR9MVYv": {
+        "last_violated": "2022-12-25T16:40:02.140Z",
+        "min_position_x": 255.28163493265012,
+        "min_position_y": 342.99674476739824,
+        "min_dist_to_nest": 93.14660597624801,
+        "pilot_info": {
+            "pilotId": "P-iBb4OKC0dM",
+            "firstName": "Horace",
+            "lastName": "Krajcik",
+            "phoneNumber": "+210266392509",
+            "createdDt": "2022-11-26T19:09:23.676Z",
+            "email": "horace.krajcik@example.com"
+        }
+    },
+    "SN-U17fUTI2xa": {
+        "last_violated": "2022-12-25T16:40:12.146Z",
+        "min_position_x": 257.61063875972576,
+        "min_position_y": 237.2336703706854,
+        "min_dist_to_nest": 14.86273846016797,
+        "pilot_info": {
+            "pilotId": "P-BmFxrAdswD",
+            "firstName": "Cecile",
+            "lastName": "Schumm",
+            "phoneNumber": "+210263720890",
+            "createdDt": "2022-09-19T16:46:59.546Z",
+            "email": "cecile.schumm@example.com"
+        }
+    },
+    "SN-wzg6W4DOfs": {
+        "last_violated": "2022-12-25T16:40:14.149Z",
+        "min_position_x": 187.65123579510822,
+        "min_position_y": 305.3279200300031,
+        "min_dist_to_nest": 83.35794582835888,
+        "pilot_info": {
+            "pilotId": "P-R6LnyI5TTG",
+            "firstName": "Reese",
+            "lastName": "Denesik",
+            "phoneNumber": "+210600282542",
+            "createdDt": "2022-06-03T18:23:16.286Z",
+            "email": "reese.denesik@example.com"
+        }
+    },
+    "SN-Mm5JY0-ZPU": {
+        "last_violated": "2022-12-25T16:40:38.167Z",
+        "min_position_x": 161.0864725664042,
+        "min_position_y": 238.31883621183113,
+        "min_dist_to_nest": 89.67756100681385,
+        "pilot_info": {
+            "pilotId": "P-qem2xdJjfn",
+            "firstName": "Ressie",
+            "lastName": "Dickinson",
+            "phoneNumber": "+210034427397",
+            "createdDt": "2022-12-21T13:36:07.076Z",
+            "email": "ressie.dickinson@example.com"
+        }
+    },
+    "SN-AwsOHYmD-I": {
+        "last_violated": "2022-12-25T16:40:50.177Z",
+        "min_position_x": 221.8030143675973,
+        "min_position_y": 298.51317612741934,
+        "min_dist_to_nest": 56.112371690420765,
+        "pilot_info": {
+            "pilotId": "P-rxwBBAYjff",
+            "firstName": "Shakira",
+            "lastName": "Schumm",
+            "phoneNumber": "+210039618785",
+            "createdDt": "2022-08-23T05:03:43.985Z",
+            "email": "shakira.schumm@example.com"
+        }
+    },
+    "SN-pfOGBB6i3g": {
+        "last_violated": "2022-12-25T16:41:00.186Z",
+        "min_position_x": 273.1348824785623,
+        "min_position_y": 214.56227510064232,
+        "min_dist_to_nest": 42.32085931711978,
+        "pilot_info": {
+            "pilotId": "P-7uYVUltN66",
+            "firstName": "Diana",
+            "lastName": "Powlowski",
+            "phoneNumber": "+210120329598",
+            "createdDt": "2022-01-08T02:35:53.468Z",
+            "email": "diana.powlowski@example.com"
+        }
+    },
+    "SN-c-jRhqZoDH": {
+        "last_violated": "2022-12-25T16:41:24.205Z",
+        "min_position_x": 262.35131849896203,
+        "min_position_y": 233.47105431670127,
+        "min_dist_to_nest": 20.63397959832861,
+        "pilot_info": {
+            "pilotId": "P-_K8i5U22lx",
+            "firstName": "Jacquelyn",
+            "lastName": "Ondricka",
+            "phoneNumber": "+210779927705",
+            "createdDt": "2022-01-16T22:54:21.335Z",
+            "email": "jacquelyn.ondricka@example.com"
+        }
+    },
+    "SN-d5hmCx2CMK": {
+        "last_violated": "2022-12-25T16:41:18.200Z",
+        "min_position_x": 175.13089440809924,
+        "min_position_y": 188.1092297997235,
+        "min_dist_to_nest": 97.13830556538764,
+        "pilot_info": {
+            "pilotId": "P-oqyELQVhHh",
+            "firstName": "Hadley",
+            "lastName": "Wilderman",
+            "phoneNumber": "+210889145512",
+            "createdDt": "2022-04-08T06:15:18.310Z",
+            "email": "hadley.wilderman@example.com"
+        }
+    },
+    "SN-pN18ts9-aT": {
+        "last_violated": "2022-12-25T16:41:40.213Z",
+        "min_position_x": 268.6847659199172,
+        "min_position_y": 286.2193469454646,
+        "min_dist_to_nest": 40.75489627809199,
+        "pilot_info": {
+            "pilotId": "P-w3KB6DiXTy",
+            "firstName": "Stanton",
+            "lastName": "McGlynn",
+            "phoneNumber": "+210547177979",
+            "createdDt": "2022-04-24T14:56:29.573Z",
+            "email": "stanton.mcglynn@example.com"
+        }
+    },
+    "SN-YSyKE0aczy": {
+        "last_violated": "2022-12-25T16:42:08.234Z",
+        "min_position_x": 261.8552366546437,
+        "min_position_y": 237.26503826364572,
+        "min_dist_to_nest": 17.399019701236483,
+        "pilot_info": {
+            "pilotId": "P-74Tf47jAD5",
+            "firstName": "Nels",
+            "lastName": "Botsford",
+            "phoneNumber": "+210936115594",
+            "createdDt": "2022-11-23T00:34:59.418Z",
+            "email": "nels.botsford@example.com"
+        }
+    },
+    "SN--J5n04Or6-": {
+        "last_violated": "2022-12-25T16:41:46.217Z",
+        "min_position_x": 263.82604239511875,
+        "min_position_y": 296.8192028280879,
+        "min_dist_to_nest": 48.81800079652233,
+        "pilot_info": {
+            "pilotId": "P-scgRwZyD_2",
+            "firstName": "Lauretta",
+            "lastName": "O'Conner",
+            "phoneNumber": "+210738765395",
+            "createdDt": "2022-09-25T21:36:17.219Z",
+            "email": "lauretta.o'conner@example.com"
+        }
+    },
+    "SN-XprWVJIQCy": {
+        "last_violated": "2022-12-25T16:42:20.245Z",
+        "min_position_x": 225.14487757831853,
+        "min_position_y": 232.60388526538543,
+        "min_dist_to_nest": 30.33812648231013,
+        "pilot_info": {
+            "pilotId": "P-eBnRLuzuSR",
+            "firstName": "Macy",
+            "lastName": "Gibson",
+            "phoneNumber": "+210528320074",
+            "createdDt": "2022-10-15T22:01:22.756Z",
+            "email": "macy.gibson@example.com"
+        }
+    },
+    "SN-oOVpgii7LE": {
+        "last_violated": "2022-12-25T16:42:34.255Z",
+        "min_position_x": 242.1172008943013,
+        "min_position_y": 228.08275584218967,
+        "min_dist_to_nest": 23.291717695650426,
+        "pilot_info": {
+            "pilotId": "P-x-3LX7W6_q",
+            "firstName": "Josephine",
+            "lastName": "Stokes",
+            "phoneNumber": "+210788437221",
+            "createdDt": "2022-08-12T16:33:46.949Z",
+            "email": "josephine.stokes@example.com"
+        }
+    },
+    "SN-z42gFdTLus": {
+        "last_violated": "2022-12-25T16:42:26.248Z",
+        "min_position_x": 231.4240930096691,
+        "min_position_y": 278.9038882492777,
+        "min_dist_to_nest": 34.35839164513029,
+        "pilot_info": {
+            "pilotId": "P-ImcGwEDJpN",
+            "firstName": "Tina",
+            "lastName": "Fay",
+            "phoneNumber": "+210065295765",
+            "createdDt": "2022-09-03T00:40:35.690Z",
+            "email": "tina.fay@example.com"
+        }
+    },
+    "SN-SLYUkeZKGB": {
+        "last_violated": "2022-12-25T16:42:46.264Z",
+        "min_position_x": 219.8278329471856,
+        "min_position_y": 234.5322001154988,
+        "min_dist_to_nest": 33.90593602792752,
+        "pilot_info": {
+            "pilotId": "P-8KnnOOCGTw",
+            "firstName": "Michale",
+            "lastName": "Cole",
+            "phoneNumber": "+210946002714",
+            "createdDt": "2022-09-13T10:17:44.555Z",
+            "email": "michale.cole@example.com"
+        }
+    }
+}

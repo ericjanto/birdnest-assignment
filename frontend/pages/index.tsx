@@ -11,7 +11,7 @@ import { DroneData } from '../types/dronedata.types'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const fetcher: Fetcher<DroneData, string> = (url: RequestInfo | URL) => fetch(url).then(r => r.json())
+const fetcher: Fetcher<DroneData[], string> = (url: RequestInfo | URL) => fetch(url).then(r => r.json())
 
 export default function Home() {
 
@@ -40,5 +40,5 @@ export default function Home() {
     )
   }
 
-  return <div>Loading</div>
+  return <div>Unexpected</div>
 }

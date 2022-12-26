@@ -3,7 +3,7 @@ import useSWR from 'swr'
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
-import styles from '../styles/Home.module.css'
+// import styles from '../styles/Home.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,32 +17,19 @@ type Data = {
 //   return data
 // }
 
-const fetcher = async (url: RequestInfo | URL) => {
-  const res = await fetch(url)
+const fetcher = (url: RequestInfo | URL) => fetch(url).then(r => r.json())
 
-  // If the status code is not in the range 200-299,
-  // we still try to parse and throw it.
-  if (!res.ok) {
-    const error = new Error('An error occurred while fetching the data.')
-    // Attach extra info to the error object.
-    error.info = await res.json()
-    error.status = res.status
-    throw error
-  }
-
-  return res.json()
-}
 
 
 export default function Home() {
 
-  // const { data, error, isLoading } = useSWR('https://birdnest.herokuapp.com/violating-pilots', fetcher)
+  const { data, error, isLoading } = useSWR('https://birdnest.herokuapp.com/violating-pilots', fetcher, { refreshInterval: 1000 })
 
-  // if (error) return <div>failed to load: {JSON.stringify(error)}</div>
-  // if (isLoading) return <div>loading...</div>
+  if (error) return <div>failed to load: {JSON.stringify(error)}</div>
+  if (isLoading) return <div>loading...</div>
 
   // render data
-  // if (data) return <div>{data}</div>
+  if (data) return <div>{JSON.stringify(data)}</div>
 
   return (
     <>

@@ -24,7 +24,7 @@ const API_DRONES = API_ENDPOINT + 'drones'
 const API_PILOTS = API_ENDPOINT + 'pilots'
 const STALE_LIMIT_SEC = 10 * 60 // 10min in s
 
-// Keeps track of serialnumber : min_pos, timestamp of violation
+// Keyed on serialnumber
 var droneDict = {}
 
 // Keeps track of timestamp of violation : serialnumber
@@ -49,7 +49,15 @@ function fetchSnapshot() {
 function addPilotInfo(serialNumber) {
     fetch(`${API_PILOTS}/${serialNumber}`)
         .then(response => response.json())
-        .then(data => { droneDict[serialNumber]['pilot_info'] = data })
+        .then(data => {
+            const pilotInfo = {}
+            // Only extract needed data
+            pilotInfo['firstName'] = data.firstName
+            pilotInfo['lastName'] = data.lastName
+            pilotInfo['phoneNumber'] = data.phoneNumber
+            pilotInfo['email'] = data.email
+            droneDict[serialNumber]['pilot_info'] = pilotInfo
+        })
         .catch(error => {
             console.log(`Internal server error when fetching from pilot API: ${error}`)
         })
@@ -161,7 +169,7 @@ app.get('/violating-pilots', cors(corsOptions), async (req, res) => {
     } = req
 
     if (method == 'GET') {
-        res.status(200).send(droneDict)
+        res.status(200).send(flattenDictData(droneDict))
     }
     else {
         res.setHeader('Allow', ['GET'])
@@ -174,3 +182,25 @@ app.listen((process.env.PORT || devPort), () => {
         console.log(`Server listening on port ${devPort}`)
     }
 })
+
+// ===================================================================
+// HELPERS
+// -------
+// If accumulated to more than 2 functions, move to a utils file.
+// ===================================================================
+
+function flattenDictData(dict) {
+    const data = []
+
+    Object.keys(dict).forEach(serialnumber => {
+        let flattened = { 'serialnumber': serialnumber }
+
+        const valuesDict = dict[serialnumber]
+        Object.keys(valuesDict).forEach(key => {
+            flattened[key] = valuesDict[key]
+        })
+        data.push(flattened)
+    })
+
+    return data
+}

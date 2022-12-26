@@ -16,8 +16,8 @@ function calculateDistanceToNest(dronePosition) {
     return Math.sqrt((droneX - NEST_X) ** 2 + (droneY - NEST_Y) ** 2)
 }
 
-function violatesNDZ(dronePosition) {
-    return calculateDistanceToNest(dronePosition) <= NDZ_RADIUS
+function violatesNDZ(distance) {
+    return distance <= NDZ_RADIUS
 }
 
 module.exports = {calculateDistanceToNest, normaliseToMeter, violatesNDZ}

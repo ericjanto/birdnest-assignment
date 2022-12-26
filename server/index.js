@@ -61,29 +61,32 @@ function cacheData(snapshotJSON) {
     drones.forEach(drone => {
         const droneX = normaliseToMeter(drone.positionX[0])
         const droneY = normaliseToMeter(drone.positionY[0])
-        if (violatesNDZ([droneX, droneY])) {
-            const sn = drone.serialNumber[0]
 
+        const sn = drone.serialNumber[0]
+        const dist = calculateDistanceToNest([droneX, droneY])
+
+        if (sn in droneDict) {
             updateTimesDict(timestamp, sn)
-
-            const dist = calculateDistanceToNest([droneX, droneY])
-            if (sn in droneDict) {
-                droneDict[sn].last_violated = timestamp
-
-                if (dist < droneDict[sn].min_dist_to_nest) {
-                    droneDict[sn].min_dist_to_nest = dist
-                    droneDict[sn].min_position_x = droneX
-                    droneDict[sn].min_position_y = droneY
-                }
-            } else {
-                droneDict[sn] = {
-                    "last_violated": timestamp,
-                    "min_position_x": droneX,
-                    "min_position_y": droneY,
-                    "min_dist_to_nest": dist,
-                }
-                addPilotInfo(sn)
+            droneDict[sn].last_seen = timestamp
+            
+            if (dist < droneDict[sn].min_dist_to_nest) {
+                droneDict[sn].min_dist_to_nest = dist
+                droneDict[sn].min_position_x = droneX
+                droneDict[sn].min_position_y = droneY
             }
+
+            if (violatesNDZ(dist)) {
+                droneDict[sn].last_violated = timestamp
+            }
+        } else if (violatesNDZ(dist)) {
+            droneDict[sn] = {
+                "last_seen": timestamp,
+                "last_violated": timestamp,
+                "min_position_x": droneX,
+                "min_position_y": droneY,
+                "min_dist_to_nest": dist,
+            }
+            addPilotInfo(sn)
         }
     })
 
@@ -114,7 +117,7 @@ function removeStaleData() {
 
         if (potentialStaleDrones) {
             potentialStaleDrones.forEach(serialNumber => {
-                if (droneDict[serialNumber].last_violated == stalest) {
+                if (droneDict[serialNumber].last_seen == stalest) {
                     delete droneDict[serialNumber]
                 }
             })

@@ -149,6 +149,7 @@ const corsOptionsDelegate = function (req, callback) {
         corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
     } else {
         corsOptions = { origin: false } // disable CORS for this request
+        console.log('Deflected for url: ', req.header('Origin'))
     }
     callback(null, corsOptions) // callback expects two parameters: error and options
 }

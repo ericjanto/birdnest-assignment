@@ -145,7 +145,7 @@ const devPort = 4000
 // Ideally, would infer origin from whether in development or production
 // mode (localhost vs URL we deploy to)
 var corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'https://birdnest-assignment.vercel.app/',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 

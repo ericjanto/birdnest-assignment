@@ -142,14 +142,23 @@ function removeStaleData() {
 const app = express()
 const devPort = 4000
 
-// Ideally, would infer origin from whether in development or production
-// mode (localhost vs URL we deploy to)
-var corsOptions = {
-    origin: 'https://birdnest-assignment.vercel.app/',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+const allowlist = ['http://localhost:3000/', 'https://birdnest-assignment.vercel.app/']
+const corsOptionsDelegate = function (req, callback) {
+    let corsOptions
+    if (allowlist.indexOf(req.header('Origin')) !== -1) {
+        corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+    } else {
+        corsOptions = { origin: false } // disable CORS for this request
+    }
+    callback(null, corsOptions) // callback expects two parameters: error and options
 }
 
-app.get('/', cors(corsOptions), async (req, res) => {
+// var corsOptions = {
+//     origin: 'https://birdnest-assignment.vercel.app/',
+//     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
+
+app.get('/',cors(corsOptionsDelegate), async (req, res) => {
     const {
         method
     } = req
@@ -163,7 +172,7 @@ app.get('/', cors(corsOptions), async (req, res) => {
     }
 })
 
-app.get('/violating-pilots', cors(corsOptions), async (req, res) => {
+app.get('/violating-pilots', cors(corsOptionsDelegate), async (req, res) => {
     const {
         method
     } = req

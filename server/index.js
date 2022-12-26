@@ -178,6 +178,10 @@ app.get('/violating-pilots', cors(corsOptionsDelegate), async (req, res) => {
         method
     } = req
 
+    res.set('Access-Control-Allow-Origin', '*')
+    res.set('Access-Control-Allow-Methods', 'GET')
+    res.set('Access-Control-Allow-Headers', 'Content-Type')
+
     if (method == 'GET') {
         res.status(200).send(flattenDictData(droneDict))
     }

@@ -15,13 +15,14 @@ const fetcher: Fetcher<DroneData[], string> = (url: RequestInfo | URL) => fetch(
 
 export default function Home() {
 
-  const { data, error, isLoading } = useSWR('https://birdnest.herokuapp.com/violating-pilots', fetcher, { refreshInterval: 1000 })
+  const { data, error, isLoading } = useSWR(
+    'https://birdnest.herokuapp.com/violating-pilots',
+    fetcher,
+    { refreshInterval: 1000 }
+  )
 
   if (error) return <div>failed to load: {JSON.stringify(error)}</div>
   if (isLoading) return <div>loading...</div>
-
-  // render data
-  // if (data) return <div>{JSON.stringify(data)}</div>
 
   if (data) {
     return (
@@ -32,7 +33,6 @@ export default function Home() {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        {/* <main className={styles.main}> */}
         <main>
           <Table droneData={data}></Table>
         </main>

@@ -2,6 +2,7 @@ import React from 'react'
 import { useTable } from 'react-table'
 
 import { DroneData } from '../types/dronedata.types'
+import { prettifyData } from '../utils/utils'
 
 type TableProps = {
     droneData: DroneData[]
@@ -9,7 +10,7 @@ type TableProps = {
 
 export default function Table({ droneData }: TableProps) {
     const data = React.useMemo(
-        () => droneData,
+        () => prettifyData(droneData),
         [droneData]
     )
 
@@ -17,11 +18,11 @@ export default function Table({ droneData }: TableProps) {
         () => [
             {
                 Header: 'Last Seen (UTC)',
-                accessor: 'last_seen',
+                accessor: 'last_seen_formatted',
             },
             {
                 Header: 'Last Violation (UTC)',
-                accessor: 'last_violated',
+                accessor: 'last_violated_formatted',
             },
             {
                 Header: 'Min. Distance to Nest (m)',

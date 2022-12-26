@@ -1,8 +1,9 @@
 const { calculateDistanceToNest, normaliseToMeter, violatesNDZ } = require('./distance.js')
+const cors = require('cors')
 const express = require('express')
 const request = require('request')
-const xml2js = require('xml2js')
 const schedule = require('node-schedule')
+const xml2js = require('xml2js')
 
 var parser = new xml2js.Parser()
 
@@ -68,7 +69,7 @@ function cacheData(snapshotJSON) {
         if (sn in droneDict) {
             updateTimesDict(timestamp, sn)
             droneDict[sn].last_seen = timestamp
-            
+
             if (dist < droneDict[sn].min_dist_to_nest) {
                 droneDict[sn].min_dist_to_nest = dist
                 droneDict[sn].min_position_x = droneX
@@ -133,7 +134,14 @@ function removeStaleData() {
 const app = express()
 const devPort = 4000
 
-app.get('/', async (req, res) => {
+// Ideally, would infer origin from whether in development or production
+// mode (localhost vs URL we deploy to)
+var corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+app.get('/', cors(corsOptions), async (req, res) => {
     const {
         method
     } = req
@@ -147,7 +155,7 @@ app.get('/', async (req, res) => {
     }
 })
 
-app.get('/violating-pilots', async (req, res) => {
+app.get('/violating-pilots', cors(corsOptions), async (req, res) => {
     const {
         method
     } = req

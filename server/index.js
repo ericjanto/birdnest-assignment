@@ -154,11 +154,6 @@ const corsOptionsDelegate = function (req, callback) {
     callback(null, corsOptions) // callback expects two parameters: error and options
 }
 
-// var corsOptions = {
-//     origin: 'https://birdnest-assignment.vercel.app/',
-//     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-// }
-
 app.get('/', cors(corsOptionsDelegate), async (req, res) => {
     const {
         method

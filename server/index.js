@@ -197,7 +197,14 @@ function flattenDictData(dict) {
 
         const valuesDict = dict[serialnumber]
         Object.keys(valuesDict).forEach(key => {
-            flattened[key] = valuesDict[key]
+            if (key == 'pilot_info') {
+                const pilotDict = valuesDict[key]
+                Object.keys(pilotDict).forEach(pilotKey => {
+                    flattened[pilotKey] = pilotDict[pilotKey]
+                })
+            } else {
+                flattened[key] = valuesDict[key]
+            }
         })
         data.push(flattened)
     })

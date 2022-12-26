@@ -159,16 +159,20 @@ const corsOptionsDelegate = function (req, callback) {
 //     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 // }
 
-app.get('/',cors(corsOptionsDelegate), async (req, res) => {
+app.get('/', cors(corsOptionsDelegate), async (req, res) => {
     const {
         method
     } = req
+
+    res.set('Access-Control-Allow-Origin', '*')
+    res.set('Access-Control-Allow-Methods', 'GET')
+    res.set('Access-Control-Allow-Headers', 'Content-Type')
+
 
     if (method == 'GET') {
         res.status(200).send('Server alive. Endpoints: /violating-pilots')
     }
     else {
-        res.setHeader('Allow', ['GET'])
         res.status(405).end(`Method ${method} not allowed`)
     }
 })
@@ -186,7 +190,6 @@ app.get('/violating-pilots', cors(corsOptionsDelegate), async (req, res) => {
         res.status(200).send(flattenDictData(droneDict))
     }
     else {
-        res.setHeader('Allow', ['GET'])
         res.status(405).end(`Method ${method} not allowed`)
     }
 })

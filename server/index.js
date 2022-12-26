@@ -52,9 +52,9 @@ function addPilotInfo(serialNumber) {
         .then(data => {
             const pilotInfo = {}
             // Only extract needed data
-            pilotInfo['firstName'] = data.firstName
-            pilotInfo['lastName'] = data.lastName
-            pilotInfo['phoneNumber'] = data.phoneNumber
+            pilotInfo['first_name'] = data.firstName
+            pilotInfo['last_name'] = data.lastName
+            pilotInfo['phone_number'] = data.phoneNumber
             pilotInfo['email'] = data.email
             droneDict[serialNumber]['pilot_info'] = pilotInfo
         })

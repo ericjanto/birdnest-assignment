@@ -33,7 +33,7 @@ GET birdnest.herokuapp.com/violating-pilots
 
 We explicitly restrict CORS access to two domains:
 - localhost (for dev)
-- https://birdnest-assignment.vercel.app/ (deployment)
+- birdnest-assignment.vercel.app (deployment)
 
 To build the cache on the server, I considered these desirable actions:
 - Remove drones by time > 10min
@@ -79,7 +79,7 @@ The backend is implemented using JavaScript. We use [express](https://expressjs.
 The frontend is implemented using TypeScript and [nextjs](https://nextjs.org/). For styling, [tailwindcss](https://tailwindcss.com/) was used. The visualisation is powered by [d3js](https://d3js.org/).
 
 ## Deployment
-The backend is deployed at [birdnest.herokuapp.com/violating-pilots](https://birdnest.herokuapp.com/violating-pilots). The frontend is deployed at [birdnest-assignment.vercel.app/](https://birdnest-assignment.vercel.app/).
+The backend is deployed at [birdnest.herokuapp.com](https://birdnest.herokuapp.com). The frontend is deployed at [birdnest-assignment.vercel.app](https://birdnest-assignment.vercel.app/).
 
 They are deployed at two different hosting providers as Heroku provides the functionality for continuously caching data 24/7, which Vercel is lacking as far as I know. For the frontend, I prefer the continuous deployment experience with Vercel.
 

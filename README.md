@@ -31,6 +31,10 @@ The backend exposes a single endpoint, for retrieving the cached data of violati
 GET birdnest.herokuapp.com/violating-pilots
 ```
 
+We explicitly restrict CORS access to two domains:
+- localhost (for dev)
+- https://birdnest-assignment.vercel.app/ (deployment)
+
 To build the cache on the server, I considered these desirable actions:
 - Remove drones by time > 10min
 - Update pilot time if it is seen again by the equipment

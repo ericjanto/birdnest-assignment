@@ -7,17 +7,18 @@ const xml2js = require('xml2js')
 
 var parser = new xml2js.Parser()
 
+
+// Schedules to retrieve and update snapshot every second (cron notation)
+schedule.scheduleJob('*/1 * * * * *', function () {
+    fetchSnapshot()
+})
+
 // ===================================================================
 // DATA FETCHING & CACHING
 // -----------------------
 // Functionality for fetching and caching data from the external
 // Reaktor API.
 // ===================================================================
-
-// Schedules to retrieve and update snapshot every second (cron notation)
-schedule.scheduleJob('*/1 * * * * *', function () {
-    fetchSnapshot()
-})
 
 const API_ENDPOINT = 'https://assignments.reaktor.com/birdnest/'
 const API_DRONES = API_ENDPOINT + 'drones'
@@ -27,7 +28,7 @@ const STALE_LIMIT_SEC = 10 * 60 // 10min in s
 // Keyed on serialnumber
 var droneDict = {}
 
-// Keeps track of timestamp of violation : serialnumber
+// Keeps track of timestamp (last seen) : serialnumber
 // (makes stale data removal more efficient)
 var droneTimesDict = {}
 

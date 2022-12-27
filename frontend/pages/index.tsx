@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import useSWR, { Fetcher } from 'swr'
 import Head from 'next/head'
 import Table from '../components/Table'
@@ -15,9 +14,6 @@ export default function Home() {
     { refreshInterval: 1000 }
   )
 
-  // Communicates highlight-state between table and visualisation
-  const [highlighted, setHighlighted] = useState('')
-
   if (error) return <div>failed to load: server timed out ({error})</div>
   if (isLoading) return <div>loading...</div>
 
@@ -33,11 +29,11 @@ export default function Home() {
         <main>
           <div className='flex'>
             <div className='flex-none'>
-              <Table droneData={data} setHighlighted={setHighlighted} />
+              <Table droneData={data} />
             </div>
             <div className='flex-1 ml-3'>
               <div className='sticky top-0'>
-                <DroneVisualisation droneData={data} highlighted={highlighted} width={450} height={450} />
+                <DroneVisualisation droneData={data} width={450} height={450} />
                 <div className='text-xs ml-14 mt-2 text-gray-500'>
                   Real-time visualisation of the closest positions to the birdnest
                 </div>
@@ -49,5 +45,5 @@ export default function Home() {
     )
   }
 
-  return <div>Unexpected</div>
+  return <div>Unexpected, data should be loaded by now.</div>
 }

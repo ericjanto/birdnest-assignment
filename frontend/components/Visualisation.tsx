@@ -5,18 +5,15 @@ import { DroneData } from "../types/dronedata.types"
 
 type VisProps = {
   droneData: DroneData[],
-  highlighted: string,
   width: Number,
   height: Number
 }
 
-export function DroneVisualisation({ droneData, highlighted, width, height }: VisProps) {
+export function DroneVisualisation({ droneData, width, height }: VisProps) {
   const chart = Scatterplot(droneData, {
     x: d => d.min_position_x,
     y: d => d.min_position_y,
-    // title: d => d.first_name,
     id: d => d.serialnumber,
-    highlighted: highlighted,
     xDomain: [150, 350],
     yDomain: [150, 350],
     xLabel: "x →",
@@ -31,6 +28,22 @@ export function DroneVisualisation({ droneData, highlighted, width, height }: Vi
   )
 }
 
+export function highlightCircle(id: string) {
+  const circle = document.getElementById(id)
+  if (circle) {
+    circle.setAttribute('fill', '#60a5fa')
+    circle.setAttribute('stroke', '#60a5fa')
+  }
+}
+
+export function resetCircle(id: string) {
+  const circle = document.getElementById(id)
+  if (circle) {
+    circle.setAttribute('fill', 'none')
+    circle.setAttribute('stroke', '#dbeafe')
+  }
+}
+
 // Based on: https://observablehq.com/@d3/scatterplot
 function Scatterplot(data, {
   x = ([x]) => x, // given d in data, returns the (quantitative) x-value
@@ -38,7 +51,6 @@ function Scatterplot(data, {
   r = 3, // (fixed) radius of dots, in pixels
   title, // given d in data, returns the title
   id, // given d in data, returns the id
-  highlighted, // element to highlight, must be an id
   marginTop = 20, // top margin, in pixels
   marginRight = 30, // right margin, in pixels
   marginBottom = 20, // bottom margin, in pixels
@@ -162,12 +174,6 @@ function Scatterplot(data, {
     .attr("fill", '#9f1239')
     .attr("stroke", 'none')
     .attr("stroke-width", strokeWidth)
-
-  // if (highlighted) {
-  //   d3.select("#" + highlighted)
-  //     .attr("fill", stroke)
-  //     .attr("stroke", stroke)
-  // }
 
   return svg.node()
 }

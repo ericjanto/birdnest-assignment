@@ -1,15 +1,15 @@
-import React, { Dispatch, SetStateAction } from 'react'
+import React from 'react'
 import { useTable } from 'react-table'
 
 import { DroneData } from '../types/dronedata.types'
 import { prettifyData } from '../utils/utils'
+import { highlightCircle, resetCircle } from './Visualisation'
 
 type TableProps = {
-    droneData: DroneData[],
-    setHighlighted: Dispatch<SetStateAction<string>>
+    droneData: DroneData[]
 }
 
-export default function Table({ droneData, setHighlighted }: TableProps) {
+export default function Table({ droneData }: TableProps) {
     const data = React.useMemo(
         () => prettifyData(droneData),
         [droneData]
@@ -78,27 +78,11 @@ export default function Table({ droneData, setHighlighted }: TableProps) {
                         <tr {...row.getRowProps()}
                             className='hover:bg-gray-100'
                             onMouseEnter={() => {
-                                const id = row.original.serialnumber
-                                const circle = document.getElementById(id)
-                                if (circle) {
-                                    circle.setAttribute('fill', 'green')
-                                }
+                                highlightCircle(row.original.serialnumber)
                             }}
-                            onMouseOver={() => {
-                                const id = row.original.serialnumber
-                                const circle = document.getElementById(id)
-                                if (circle) {
-                                    circle.setAttribute('fill', '#60a5fa')
-                                    circle.setAttribute('stroke', '#60a5fa')
-                                }
-                            }}
+
                             onMouseLeave={() => {
-                                const id = row.original.serialnumber
-                                const circle = document.getElementById(id)
-                                if (circle) {
-                                    circle.setAttribute('fill', 'none')
-                                    circle.setAttribute('stroke', '#dbeafe')
-                                }
+                                resetCircle(row.original.serialnumber)
                             }}
                         >
                             {row.cells.map(cell => {

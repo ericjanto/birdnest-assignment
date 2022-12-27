@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { useTable } from 'react-table'
 
 import { DroneData } from '../types/dronedata.types'
 import { prettifyData } from '../utils/utils'
 
 type TableProps = {
-    droneData: DroneData[]
+    droneData: DroneData[],
+    setHighlighted: Dispatch<SetStateAction<string>>
 }
 
-export default function Table({ droneData }: TableProps) {
+export default function Table({ droneData, setHighlighted }: TableProps) {
     const data = React.useMemo(
         () => prettifyData(droneData),
         [droneData]
@@ -20,10 +21,6 @@ export default function Table({ droneData }: TableProps) {
                 Header: 'Last Seen (UTC)',
                 accessor: 'last_seen_formatted',
             },
-            // {
-            //     Header: 'Last Violation (UTC)',
-            //     accessor: 'last_violated_formatted',
-            // },
             {
                 Header: 'Min. Distance (m)',
                 accessor: 'min_dist_to_nest',
@@ -79,7 +76,31 @@ export default function Table({ droneData }: TableProps) {
                     prepareRow(row)
                     return (
                         <tr {...row.getRowProps()}
-                            className='hover:bg-gray-100'>
+                            className='hover:bg-gray-100'
+                            onMouseEnter={() => {
+                                const id = row.original.serialnumber
+                                const circle = document.getElementById(id)
+                                if (circle) {
+                                    circle.setAttribute('fill', 'green')
+                                }
+                            }}
+                            onMouseOver={() => {
+                                const id = row.original.serialnumber
+                                const circle = document.getElementById(id)
+                                if (circle) {
+                                    circle.setAttribute('fill', '#60a5fa')
+                                    circle.setAttribute('stroke', '#60a5fa')
+                                }
+                            }}
+                            onMouseLeave={() => {
+                                const id = row.original.serialnumber
+                                const circle = document.getElementById(id)
+                                if (circle) {
+                                    circle.setAttribute('fill', 'none')
+                                    circle.setAttribute('stroke', '#dbeafe')
+                                }
+                            }}
+                        >
                             {row.cells.map(cell => {
                                 return (
                                     <td

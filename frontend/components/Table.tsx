@@ -25,7 +25,7 @@ export default function Table({ droneData }: TableProps) {
                 accessor: 'last_violated_formatted',
             },
             {
-                Header: 'Min. Distance to Nest (m)',
+                Header: 'Min. Distance (m)',
                 accessor: 'min_dist_to_nest',
             },
             {
@@ -48,7 +48,7 @@ export default function Table({ droneData }: TableProps) {
         []
     )
 
-    
+
     const {
         getTableProps,
         getTableBodyProps,
@@ -59,19 +59,14 @@ export default function Table({ droneData }: TableProps) {
     } = useTable({ columns, data })
 
     return (
-        <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
+        <table {...getTableProps()} className='table-auto'>
             <thead>
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map(column => (
                             <th
                                 {...column.getHeaderProps()}
-                                style={{
-                                    borderBottom: 'solid 3px red',
-                                    background: 'aliceblue',
-                                    color: 'black',
-                                    fontWeight: 'bold',
-                                }}
+                                className='whitespace-nowrap border'
                             >
                                 {column.render('Header')}
                             </th>
@@ -83,16 +78,13 @@ export default function Table({ droneData }: TableProps) {
                 {rows.map(row => {
                     prepareRow(row)
                     return (
-                        <tr {...row.getRowProps()}>
+                        <tr {...row.getRowProps()}
+                            className='hover:bg-gray-100'>
                             {row.cells.map(cell => {
                                 return (
                                     <td
                                         {...cell.getCellProps()}
-                                        style={{
-                                            padding: '10px',
-                                            border: 'solid 1px gray',
-                                            background: 'papayawhip',
-                                        }}
+                                        className='border'
                                     >
                                         {cell.render('Cell')}
                                     </td>

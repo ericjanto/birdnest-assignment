@@ -20,10 +20,10 @@ export default function Table({ droneData }: TableProps) {
                 Header: 'Last Seen (UTC)',
                 accessor: 'last_seen_formatted',
             },
-            {
-                Header: 'Last Violation (UTC)',
-                accessor: 'last_violated_formatted',
-            },
+            // {
+            //     Header: 'Last Violation (UTC)',
+            //     accessor: 'last_violated_formatted',
+            // },
             {
                 Header: 'Min. Distance (m)',
                 accessor: 'min_dist_to_nest',
@@ -59,14 +59,14 @@ export default function Table({ droneData }: TableProps) {
     } = useTable({ columns, data })
 
     return (
-        <table {...getTableProps()} className='table-auto'>
+        <table {...getTableProps()} className='table-auto prose-sm'>
             <thead>
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map(column => (
                             <th
                                 {...column.getHeaderProps()}
-                                className='whitespace-nowrap border'
+                                className='whitespace-nowrap border sticky top-0 bg-white'
                             >
                                 {column.render('Header')}
                             </th>

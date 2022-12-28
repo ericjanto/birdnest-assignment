@@ -62,7 +62,8 @@ This schema requires to check for every entry that `last_seen < 10min` , for eve
 // timeDict
 key: last_seen
 value: [
-	// list of serial numbers with same value as last_seen
+	// list of serial numbers for drone position entries
+	// with same timestamp value as last_seen
 ]
 ```
 

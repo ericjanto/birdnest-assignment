@@ -82,7 +82,7 @@ The frontend is implemented using TypeScript and [nextjs](https://nextjs.org/). 
 ## Deployment
 The backend is deployed at [birdnest.herokuapp.com](https://birdnest.herokuapp.com). The frontend is deployed at [birdnest-assignment.vercel.app](https://birdnest-assignment.vercel.app/).
 
-They are deployed at two different hosting providers as Heroku provides the functionality for continuously caching data 24/7, which Vercel is lacking as far as I know. For the frontend, I prefer the continuous deployment experience with Vercel.
+They are deployed at two different hosting providers as Heroku provides the functionality for continuously caching data 24/7, which Vercel is lacking as far as I know (but maybe their new Lambda functions could solve this?). For the frontend, I prefer the continuous deployment experience with Vercel.
 
 ## Installation and Local Setup
 1. `cd` into the respective server or frontend folder of this repository.
